@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: Node
+metadata:
+  annotations:
+    kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+    node.alpha.kubernetes.io/ttl: "0"
+    projectcalico.org/IPv4Address: 192.168.136.11/24
+    projectcalico.org/IPv4IPIPTunnelAddr: 10.244.235.192
+    volumes.kubernetes.io/controller-managed-attach-detach: "true"
+  creationTimestamp: "2023-08-30T05:49:09Z"
+  labels:
+    beta.kubernetes.io/arch: amd64
+    beta.kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+    kubernetes.io/hostname: k8s-master
+    kubernetes.io/os: linux
+    node-role.kubernetes.io/control-plane: ""
+    node-role.kubernetes.io/master: ""
+    node.kubernetes.io/exclude-from-external-load-balancers: ""
+  name: k8s-master
+  resourceVersion: "6696"
+  uid: 7c52b471-4449-46c8-bbc4-33581a3287fb
+spec:
+  podCIDR: 10.244.0.0/24
+  podCIDRs:
+  - 10.244.0.0/24
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+status:
+  addresses:
+  - address: 192.168.136.11
+    type: InternalIP
+  - address: k8s-master
+    type: Hostname
+  allocatable:
+    cpu: "8"
+    ephemeral-storage: "26071640021"
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 1760632Ki
+    pods: "110"
+  capacity:
+    cpu: "8"
+    ephemeral-storage: 28289540Ki
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 1863032Ki
+    pods: "110"
+  conditions:
+  - lastHeartbeatTime: "2023-08-30T05:55:31Z"
+    lastTransitionTime: "2023-08-30T05:55:31Z"
+    message: Calico is running on this node
+    reason: CalicoIsUp
+    status: "False"
+    type: NetworkUnavailable
+  - lastHeartbeatTime: "2023-08-30T06:57:03Z"
+    lastTransitionTime: "2023-08-30T05:49:07Z"
+    message: kubelet has sufficient memory available
+    reason: KubeletHasSufficientMemory
+    status: "False"
+    type: MemoryPressure
+  - lastHeartbeatTime: "2023-08-30T06:57:03Z"
+    lastTransitionTime: "2023-08-30T05:49:07Z"
+    message: kubelet has no disk pressure
+    reason: KubeletHasNoDiskPressure
+    status: "False"
+    type: DiskPressure
+  - lastHeartbeatTime: "2023-08-30T06:57:03Z"
+    lastTransitionTime: "2023-08-30T05:49:07Z"
+    message: kubelet has sufficient PID available
+    reason: KubeletHasSufficientPID
+    status: "False"
+    type: PIDPressure
+  - lastHeartbeatTime: "2023-08-30T06:57:03Z"
+    lastTransitionTime: "2023-08-30T05:54:33Z"
+    message: kubelet is posting ready status
+    reason: KubeletReady
+    status: "True"
+    type: Ready
+  daemonEndpoints:
+    kubeletEndpoint:
+      Port: 10250
+  images:
+  - names:
+    - registry.aliyuncs.com/google_containers/etcd@sha256:64b9ea357325d5db9f8a723dcf503b5a449177b17ac87d69481e126bb724c263
+    - registry.aliyuncs.com/google_containers/etcd:3.5.1-0
+    sizeBytes: 292558922
+  - names:
+    - calico/node@sha256:8e34517775f319917a0be516ed3a373dbfca650d1ee8e72158087c24356f47fb
+    - calico/node:v3.26.1
+    sizeBytes: 245921697
+  - names:
+    - calico/cni@sha256:3be3c67ddba17004c292eafec98cc49368ac273b40b27c8a6621be4471d348d6
+    - calico/cni:v3.26.1
+    sizeBytes: 210371785
+  - names:
+    - registry.aliyuncs.com/google_containers/kube-apiserver@sha256:0cd8c0bed8d89d914ee5df41e8a40112fb0a28804429c7964296abedc94da9f1
+    - registry.aliyuncs.com/google_containers/kube-apiserver:v1.23.6
+    sizeBytes: 135170705
+  - names:
+    - registry.aliyuncs.com/google_containers/kube-controller-manager@sha256:df94796b78d2285ffe6b231c2b39d25034dde8814de2f75d953a827e77fe6adf
+    - registry.aliyuncs.com/google_containers/kube-controller-manager:v1.23.6
+    sizeBytes: 124992421
+  - names:
+    - registry.aliyuncs.com/google_containers/kube-proxy@sha256:cc007fb495f362f18c74e6f5552060c6785ca2b802a5067251de55c7cc880741
+    - registry.aliyuncs.com/google_containers/kube-proxy:v1.23.6
+    sizeBytes: 112336311
+  - names:
+    - registry.aliyuncs.com/google_containers/kube-scheduler@sha256:02b4e994459efa49c3e2392733e269893e23d4ac46e92e94107652963caae78b
+    - registry.aliyuncs.com/google_containers/kube-scheduler:v1.23.6
+    sizeBytes: 53496769
+  - names:
+    - registry.aliyuncs.com/google_containers/coredns@sha256:5b6ec0d6de9baaf3e92d0f66cd96a25b9edbce8716f5f15dcd1a616b3abd590e
+    - registry.aliyuncs.com/google_containers/coredns:v1.8.6
+    sizeBytes: 46829283
+  - names:
+    - registry.aliyuncs.com/google_containers/pause@sha256:3d380ca8864549e74af4b29c10f9cb0956236dfb01c40ca076fb6c37253234db
+    - registry.aliyuncs.com/google_containers/pause:3.6
+    sizeBytes: 682696
+  nodeInfo:
+    architecture: amd64
+    bootID: c99072d3-db7a-4d63-8e61-6246e41d2473
+    containerRuntimeVersion: docker://18.6.3
+    kernelVersion: 3.10.0-1160.el7.x86_64
+    kubeProxyVersion: v1.23.6
+    kubeletVersion: v1.23.6
+    machineID: b8b185e227824cf793cd724ec588c5a7
+    operatingSystem: linux
+    osImage: CentOS Linux 7 (Core)
+    systemUUID: 5F4D4D56-516F-5A38-22AF-859623B25FD8
