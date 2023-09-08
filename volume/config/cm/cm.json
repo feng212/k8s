@@ -1,0 +1,8 @@
+{
+    "name":"configmap",
+    "type":"json",
+    "data":{
+        "value":[10,12,13],
+        "max":55
+    }
+}

@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-pod2
+  labels:
+    name: myapp
+spec:
+  containers:
+  - name: cm-pod-env
+    image: nginx:1.7.1
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: config-volume #指定volume
+      mountPath: /etc/config
+  restartPolicy: Never
+  volumes:
+    - name: config-volume #volumes名称
+      configMap:
+        name: game-demo
+        items:
+        - key: game.properties
+          path: game
+        - key: ui_properties_file_name
+          path: ui
+
+    
