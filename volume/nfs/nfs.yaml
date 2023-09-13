@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-pod
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    volumeMounts:
+    - name: nfs-volume-rw
+      mountPath:  /var/log/nginx
+  - name: busybox
+    image: busybox:latest
+    command: ["/bin/sh","-c","sleep 500"]
+    volumeMounts:
+    - name: nfs-volume-ro
+      mountPath: /logs
+  volumes:
+  - name: nfs-volume-rw
+    nfs:
+      server: 192.168.136.11 #nfs服务器地址
+      path: /data/rw #共享文件路径
+  - name: nfs-volume-ro
+    nfs:
+      server: 192.168.136.11 #nfs服务器地址
+      path: /data/ro #共享文件路径 
+      readOnly: true

@@ -1,0 +1,106 @@
+##nfs 192.168.136.11 /data 3Gi 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv-nfs-3
+spec:
+  capacity: #容量
+    storage: 3Gi #大小
+  volumeMode: Filesystem #卷模式
+  accessModes: #访问模式
+    - ReadWriteMany #多个节点以读写方式挂载
+  persistentVolumeReclaimPolicy: Recycle #回收策略
+  #storageClassName: slow #类 ，不指定类，任意非特定pvc都可访问
+  nfs:
+    path: /data
+    server: 192.168.136.11
+
+---
+##nfs 192.168.136.11 /data 17Gi 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv-nfs-17
+spec:
+  capacity: #容量
+    storage: 17Gi #大小
+  volumeMode: Filesystem #卷模式
+  accessModes: #访问模式
+    - ReadWriteMany #多个节点以读写方式挂载
+  persistentVolumeReclaimPolicy: Recycle #回收策略
+  #storageClassName: slow #类 ，不指定类，任意非特定pvc都可访问
+  nfs:
+    path: /data
+    server: 192.168.136.11
+
+---
+##nfs 192.168.136.12 /data 25Gi storageClassName:slow 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv-nfs-storageclass
+spec:
+  capacity: #容量
+    storage: 25Gi #大小
+  volumeMode: Filesystem #卷模式
+  accessModes: #访问模式
+    - ReadWriteMany #多个节点以读写方式挂载
+  persistentVolumeReclaimPolicy: Recycle #回收策略
+  storageClassName: nfs-class #类 ，不指定类，任意非特定pvc都可访问
+  nfs:
+    path: /data
+    server: 192.168.136.12
+
+---
+##nfs 192.168.136.12 /data 10Gi 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv-nfs-10
+spec:
+  capacity: #容量
+    storage: 10Gi #大小
+  volumeMode: Filesystem #卷模式
+  accessModes: #访问模式
+    - ReadWriteMany #多个节点以读写方式挂载
+  persistentVolumeReclaimPolicy: Recycle #回收策略
+  #storageClassName: slow #类 ，不指定类，任意非特定pvc都可访问
+  nfs:
+    path: /data
+    server: 192.168.136.12
+
+---
+##nfs 192.168.136.13 /data 20Gi 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv-nfs-once
+spec:
+  capacity: #容量
+    storage: 20Gi #大小
+  volumeMode: Filesystem #卷模式
+  accessModes: #访问模式
+    - ReadWriteOnce #多个节点以读写方式挂载
+  persistentVolumeReclaimPolicy: Recycle #回收策略
+  #storageClassName: slow #类 ，不指定类，任意非特定pvc都可访问
+  nfs:
+    path: /data
+    server: 192.168.136.13
+
+---
+##nfs 192.168.136.13 /data 20Gi 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: test-pv-hostpath
+spec:
+  capacity: #容量
+    storage: 20Gi #大小
+  volumeMode: Filesystem #卷模式
+  accessModes: #访问模式
+    - ReadWriteOnce #多个节点以读写方式挂载
+  persistentVolumeReclaimPolicy: Recycle #回收策略
+  #storageClassName: slow #类 ，不指定类，任意非特定pvc都可访问
+  hostPath:
+    path: /node_path
+    type: DirectoryOrCreate
