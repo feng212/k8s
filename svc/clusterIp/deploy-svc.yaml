@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-svc #deploy名称
+spec:
+  replicas: 2 # 期望副本数
+  selector: #rs选择器
+    matchLabels:
+      pods: pod-svc #pod pods标签
+  template:
+    metadata:
+      name: svc-pod #pod名称
+      labels:
+        pods: pod-svc #rs关联标签
+        app: svc #service进行关联的标签
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        imagePullPolicy: IfNotPresent # 拉取策略
+        ports:
+        - containerPort: 80

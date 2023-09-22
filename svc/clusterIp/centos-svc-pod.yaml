@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: centos-svc-pod
+  labels:
+    app: test # 标签
+spec:
+  containers:
+  - name: centos-svc
+    image: tutum/centos
+    imagePullPolicy: IfNotPresent
